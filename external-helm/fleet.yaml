@@ -1,7 +1,7 @@
 defaultNamespace: nginx
 helm:
   repo: https://charts.bitnami.com/bitnami
-  chart: bitnami/nginx
+  chart: nginx
   releaseName: nginx
   version: 19.0.2
   valuesFiles:
