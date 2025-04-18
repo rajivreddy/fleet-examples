@@ -1,12 +1,18 @@
 # fleet.yaml
 defaultNamespace: monitoring
+targetCustomizations:
+- name: edge
+  helm:
+    # The release name to use. If empty a generated release name will be used
+    releaseName: kube-prometheus-stack
+    # Custom values that will be passed as values.yaml to the installation
+    values:
+      prometheus:
+        prometheusSpec:
+          externalLabels:
+            cluster: ""
+  clusterSelector:
+    matchLabels:
+      type: edge
 # Custom helm options
-helm:
-  # The release name to use. If empty a generated release name will be used
-  releaseName: kube-prometheus-stack
-  # Custom values that will be passed as values.yaml to the installation
-  values:
-    prometheus:
-      prometheusSpec:
-        externalLabels:
-          cluster: "{{ .Target.ClusterName }}"
+
