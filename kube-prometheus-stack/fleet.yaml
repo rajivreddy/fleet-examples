@@ -9,4 +9,4 @@ helm:
     prometheus:
       prometheusSpec:
         externalLabels:
-          cluster: "{{ .ClusterName }}"
+          cluster: "{{ .Target.ClusterName }}"
