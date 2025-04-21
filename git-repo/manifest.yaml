@@ -1,0 +1,17 @@
+# Source: my-fleet-repo-chart/templates/repo.yaml
+apiVersion: fleet.cattle.io/v1alpha1
+kind: GitRepo
+metadata:
+  name: simple-helm
+  namespace: fleet-local
+spec:
+  repo: https://github.com/rancher/fleet-examples
+  branch: master
+  paths:
+    - single-cluster/helm
+  pollingInterval: 15s
+  targets:
+    - clusterSelector:
+        matchLabels:
+          type: edge
+      name: edge
