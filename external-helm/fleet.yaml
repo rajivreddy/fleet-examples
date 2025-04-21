@@ -4,6 +4,19 @@ helm:
   chart: nginx
   releaseName: nginx
   version: 19.0.2
-  valuesFiles:
+
+targetCustomizations:
+- name: edge
+  helm:
+    valuesFiles:
     - dev.yaml
-  
+  clusterSelector:
+    matchLabels:
+      type: edge
+- name: alpha
+  helm:
+    valuesFiles:
+    - stage.yaml
+  clusterSelector:
+    matchLabels:
+      type: alpha
