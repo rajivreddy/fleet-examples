@@ -8,6 +8,7 @@ metadata:
   namespace: fleet-default
 spec:
   repo: https://github.com/rajivreddy/fleet-examples.git
+  branch: main
   paths:
   - external-helm
   targets:
