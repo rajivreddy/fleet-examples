@@ -1,0 +1,68 @@
+namespace: fleet-local
+gitRepos:
+  - name: applicaiton1
+    repo: https://github.com/rancher/fleet-examples
+    pollingInterval: 15s
+    disablePolling: false
+    environments:
+    - name: dev
+      branch: dev
+      paths:
+        - applicaiton1
+      labels:
+        created-by: fleet
+      targets:
+      - name: dev
+        clusterSelector:
+          matchLabels:
+            type: dev-clusters
+    - name: stage
+      branch: stage
+      paths:
+        - applicaiton1
+      labels:
+        created-by: fleet
+      targets:
+      - name: stage
+        clusterSelector:
+          matchLabels:
+            type: stage-clusters
+    - name: prod
+      branch: main
+      paths:
+        - applicaiton1
+      labels:
+        created-by: fleet
+      targets:
+      - name: prod
+        clusterSelector:
+          matchLabels:
+            type: prod-clusters
+
+  - name: applicaiton2
+    repo: https://github.com/rancher/fleet-examples
+    pollingInterval: 15s
+    disablePolling: false
+    environments:
+    - name: dev
+      branch: dev
+      paths:
+        - applicaiton2
+      labels:
+        created-by: fleet
+      targets:
+      - name: dev
+        clusterSelector:
+          matchLabels:
+            type: dev-clusters
+    - name: stage
+      branch: stage
+      paths:
+        - applicaiton2
+      labels:
+        created-by: fleet
+      targets:
+      - name: stage
+        clusterSelector:
+          matchLabels:
+            type: stage-clusters

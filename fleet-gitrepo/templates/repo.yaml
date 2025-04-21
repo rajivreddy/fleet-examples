@@ -1,0 +1,69 @@
+{{- range .Values.gitRepos }}
+{{- $repo := . }}
+{{- range .environments }}
+apiVersion: fleet.cattle.io/v1alpha1
+kind: GitRepo
+metadata:
+  name: {{ printf "%s-%s" $repo.name .name }}
+  namespace: {{ $.Values.namespace }}
+  labels:
+    {{- range $k, $v := .labels }}
+    {{ $k }}: {{ $v }}
+    {{- end }}
+spec:
+  repo: {{ $repo.repo }}
+  {{- if .branch }}
+  branch: {{ .branch }}
+  {{- end }}
+  {{- if .revision }}
+  revision: {{ .revision }}
+  {{- end }}
+  {{- if .clientSecretName }}
+  clientSecretName: {{ .clientSecretName }}
+  {{- end }}
+  {{- if .helmSecretName }}
+  helmSecretName: {{ .helmSecretName }}
+  {{- end }}
+  {{- if .helmRepoURLRegex }}
+  helmRepoURLRegex: {{ .helmRepoURLRegex }}
+  {{- end }}
+  {{- if .paths }}
+  paths:
+    {{- range .paths }}
+    - {{ . }}
+    {{- end }}
+  {{- end }}
+  {{- if $repo.pollingInterval }}
+  pollingInterval: {{ $repo.pollingInterval }}
+  {{- end }}
+  {{- if $repo.disablePolling }}
+  disablePolling: {{ $repo.disablePolling }}
+  {{- end }}
+  {{- if .webhookSecret }}
+  webhookSecret: {{ .webhookSecret }}
+  {{- end }}
+  {{- if $repo.paused }}
+  paused: {{ $repo.paused }}
+  {{- end }}
+  {{- if $repo.forceSyncGeneration }}
+  forceSyncGeneration: {{ $repo.forceSyncGeneration }}
+  {{- end }}
+  {{- if $repo.correctDrift }}
+  correctDrift:
+    enabled: {{ $repo.correctDrift.enabled }}
+    force: {{ $repo.correctDrift.force | default false }}
+    keepFailHistory: {{ $repo.correctDrift.keepFailHistory | default false }}
+  {{- end }}
+  {{- if $repo.serviceAccount }}
+  serviceAccount: {{ $repo.serviceAccount }}
+  {{- end }}
+  {{- if $repo.deleteNamespace }}
+  deleteNamespace: {{ $repo.deleteNamespace }}
+  {{- end }}
+  {{- if .targets }}
+  targets:
+  {{- toYaml .targets | nindent 4 }}
+  {{- end }}
+---
+{{- end }}
+{{- end }}
