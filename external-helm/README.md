@@ -16,4 +16,8 @@ spec:
     clusterSelector:
       matchLabels:
         type: edge
+  - name: alpha
+    clusterSelector:
+      matchLabels:
+        type: alpha
 ```
