@@ -1,7 +1,7 @@
 defaultNamespace: istio-system
 helm:
   repo: https://istio-release.storage.googleapis.com/charts
-  chart: istio/istiod
+  chart: istiod
   releaseName: istio-base
   # values:
   #   global:
