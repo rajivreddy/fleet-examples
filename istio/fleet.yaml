@@ -15,18 +15,33 @@ helm:
   # force: true
 diff:
   comparePatches:
-  - apiVersion: admissionregistration.k8s.io/v1
-    kind: ValidatingWebhookConfiguration
-    namespace: istio-system
-    name: istio-validator-istio-system
-    jsonPointers:
-    - "/webhooks/0/clientConfig/caBundle"
-    - "/webhooks/0/rules"
-    operations:
-    - {"op": "remove", "path":"/webhooks/0/clientConfig/caBundle"}
-    - {"op": "remove", "path":"/webhooks/0/rules"}
-    - {"op": "ignore", "path":"/webhooks/0/clientConfig/caBundle"}
-    - {"op": "ignore", "path":"/webhooks/0/rules"}
+    - apiVersion: admissionregistration.k8s.io/v1
+      kind: ValidatingWebhookConfiguration
+      namespace: istio-system
+      name: istio-validator-istio-system
+      jsonPointers:
+        - "/webhooks/0/clientConfig/caBundle"
+        - "/webhooks/0/rules"
+      operations:
+        - op: "ignore"
+          path: "/webhooks/0/clientConfig/caBundle"
+        - op: "ignore"
+          path: "/webhooks/0/rules"
+
+# diff:
+#   comparePatches:
+#   - apiVersion: admissionregistration.k8s.io/v1
+#     kind: ValidatingWebhookConfiguration
+#     namespace: istio-system
+#     name: istio-validator-istio-system
+#     jsonPointers:
+#     - "/webhooks/0/clientConfig/caBundle"
+#     - "/webhooks/0/rules"
+#     operations:
+#     - {"op": "remove", "path":"/webhooks/0/clientConfig/caBundle"}
+#     - {"op": "remove", "path":"/webhooks/0/rules"}
+#     - {"op": "ignore", "path":"/webhooks/0/clientConfig/caBundle"}
+#     - {"op": "ignore", "path":"/webhooks/0/rules"}
     # - {"op":"ignore"}
     # - {"op": "remove", "path":"/webhooks/1/clientConfig/caBundle"}
     # - {"op": "remove", "path":"/webhooks/1/rules"}
