@@ -2,9 +2,9 @@ import requests
 import json
 
 # Set your Rancher server URL and token
-RANCHER_URL = "https://rancher.loca"  # e.g., https://rancher.example.com
-CLUSTER_ID = "c-m-xxxxxx"
-API_TOKEN = "token-qwtzb:xxxxxxxxxxxx"  # Rancher API token
+RANCHER_URL = "https://rancher.local"  # e.g., https://rancher.example.com
+CLUSTER_ID = "c-m-j74kwf7s"
+API_TOKEN = "token-rl2ws:xxxx"  # Rancher API token
 
 # Common headers
 headers = {
@@ -25,6 +25,19 @@ def get_cluster(cluster_id):
     else:
         print(f"Error fetching cluster: {response.status_code} {response.text}")
         return None
+
+def list_clusters():
+    """
+    Lists all clusters in Rancher.
+    """
+    url = f"{RANCHER_URL}/v3/clusters"
+    response = requests.get(url, headers=headers, verify=True)
+    if response.status_code == 200:
+        return response.json()["data"]
+    else:
+        print(f"Error fetching clusters: {response.status_code} {response.text}")
+        return None
+    
 def update_cluster_labels(cluster_id, cluster_data, label_key, label_value):
     """
     Updates the cluster object in Rancher.
@@ -46,11 +59,24 @@ def update_cluster_labels(cluster_id, cluster_data, label_key, label_value):
 
 
 if __name__ == "__main__":
-    # Fetch the cluster object
+    #List all clusters
+    clusters = list_clusters()
+    if not clusters:
+        print("No clusters found.")
+        exit(1)
+    else:
+        print("Clusters found:")
+        for cluster in clusters:
+            print(f" - {cluster['id']} : {cluster['name']} -- {cluster['state']}")
+            print(f"   Labels: {cluster['labels'] if 'labels' in cluster else 'No labels'}")
+    
+    # Fetch the cluster Data
     cluster_data = get_cluster(CLUSTER_ID)
     if not cluster_data:
         print("Failed to fetch cluster data.")
         exit(1)
+    print(f"Cluster data fetched for {CLUSTER_ID}: {cluster_data['name']}-- {cluster_data['state']}")
     
+    ### Update the cluster labels 
     update_cluster_labels(CLUSTER_ID, cluster_data, "env", "test")  # Update the label
     
