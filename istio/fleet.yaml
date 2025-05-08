@@ -17,17 +17,19 @@ diff:
   comparePatches:
     - apiVersion: admissionregistration.k8s.io/v1
       kind: ValidatingWebhookConfiguration
-      namespace: istio-system
+      # namespace: istio-system
       name: istio-validator-istio-system
-      # jsonPointers:
-      #   - "/webhooks/0/clientConfig/caBundle"
-      #   - "/webhooks/0/rules"
-      #   - "/webhooks/0/failurePolicy"
+      jsonPointers:
+        - "/webhooks/0/clientConfig/caBundle"
+        - "/webhooks/0/rules"
+        - "/webhooks/0/failurePolicy"
       operations:
         - op: "ignore"
           path: "/webhooks/0/clientConfig/caBundle"
         - op: "ignore"
           path: "/webhooks/0/failurePolicy"
+        - op: "ignore"
+          path: "/webhooks/0/rules"
 
 # diff:
 #   comparePatches:
