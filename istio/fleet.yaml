@@ -13,7 +13,14 @@ helm:
   #       cni:
   #         enabled: false
   # force: true
-
+diff:
+  comparePatches:
+  - apiVersion: admissionregistration.k8s.io/v1
+    kind: ValidatingWebhookConfiguration
+    namespace: istio-system
+    name: istio-validator-istio-system
+    operations:
+    - {"op":"ignore"}
 # diff:
 #   comparePatches:
 #   - apiVersion: admissionregistration.k8s.io/v1
