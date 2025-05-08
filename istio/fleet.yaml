@@ -22,9 +22,11 @@ diff:
     jsonPointers:
     - "/webhooks/0/clientConfig/caBundle"
     - "/webhooks/0/rules"
-    # operations:
-    # - {"op": "remove", "path":"/webhooks/0/clientConfig/caBundle"}
-    # - {"op": "remove", "path":"/webhooks/0/rules"}
+    operations:
+    - {"op": "remove", "path":"/webhooks/0/clientConfig/caBundle"}
+    - {"op": "remove", "path":"/webhooks/0/rules"}
+    - {"op": "ignore", "path":"/webhooks/0/clientConfig/caBundle"}
+    - {"op": "ignore", "path":"/webhooks/0/rules"}
     # - {"op":"ignore"}
     # - {"op": "remove", "path":"/webhooks/1/clientConfig/caBundle"}
     # - {"op": "remove", "path":"/webhooks/1/rules"}
