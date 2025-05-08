@@ -1,0 +1,38 @@
+defaultNamespace: istio-system
+helm:
+  repo: https://istio-release.storage.googleapis.com/charts
+  chart: istio/istiod
+  releaseName: istio-base
+  version: 1.26.0
+  # values:
+  #   global:
+  #     platform: k3s
+  #   profile: ambient
+  #   istiod:
+  #     pilot:
+  #       autoscaleEnabled: false
+  #       cni:
+  #         enabled: false
+  # force: true
+
+# diff:
+#   comparePatches:
+#   - apiVersion: admissionregistration.k8s.io/v1
+#     kind: ValidatingWebhookConfiguration
+#     name: istio-validator-istio-system
+#     operations:
+#     - {"op":"ignore"}
+#   - apiVersion: admissionregistration.k8s.io/v1
+#     kind: ValidatingWebhookConfiguration
+#     name: istiod-default-validator	
+#     operations:
+#     - {"op":"ignore"}
+
+
+
+
+
+
+  
+
+
