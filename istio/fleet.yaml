@@ -3,7 +3,6 @@ helm:
   repo: https://istio-release.storage.googleapis.com/charts
   chart: istio/istiod
   releaseName: istio-base
-  version: 1.26.0
   # values:
   #   global:
   #     platform: k3s
