@@ -22,9 +22,12 @@ diff:
       jsonPointers:
         - "/webhooks/0/clientConfig/caBundle"
         - "/webhooks/0/rules"
+        - "/webhooks/0/failurePolicy"
       operations:
         - op: "ignore"
           path: "/webhooks/0/clientConfig/caBundle"
+        - op: "ignore"
+          path: "/webhooks/0/failurePolicy"
         - op: "ignore"
           path: "/webhooks/0/rules"
 
