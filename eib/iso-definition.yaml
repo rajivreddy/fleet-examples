@@ -1,0 +1,19 @@
+apiVersion: 1.1
+image:
+  imageType: iso
+  arch: x86_64
+  baseImage: slemicro.iso
+  outputImageName: eib-image.iso
+operatingSystem:
+  users:
+    - username: root
+      encryptedPassword: $6$x0wDu8U/Ms.wF9w5$0Bl87CZ8JS8k/l6yI1NpCDpi6FNH7jmJ95IZ2xEeQPGGWHuri6E8Slzs1RrM/ob8Ovt3gRpVgHoyBTqUuymlF/
+  packages:
+    packageList:
+      - jq
+      - container-selinux
+      - k3s-selinux
+    sccRegistrationCode: xxxxxxxxxxxx
+
+kubernetes:
+  version: v1.3.7+rke2r1
