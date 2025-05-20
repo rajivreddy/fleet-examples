@@ -8,6 +8,6 @@ spec:
     spec:
       containers:
       - name: pre-pull
-        image: nginx:stable-perl
+        image: nginx:stable-otel
         command: ["sleep", "1"]
       restartPolicy: Never
