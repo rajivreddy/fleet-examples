@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: prepull-job
 spec:
+  ttlSecondsAfterFinished: 100
   template:
     spec:
       containers:
