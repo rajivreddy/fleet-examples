@@ -1,4 +1,4 @@
 correctDrift:
-  enabled: false
+  enabled: true
   force: true
   keepFailHistory: false
