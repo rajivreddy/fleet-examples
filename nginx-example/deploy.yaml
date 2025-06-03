@@ -23,7 +23,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx:stable-otel
+      - image: nginxtest
         imagePullPolicy: IfNotPresent
         name: nginx
         resources: {}
