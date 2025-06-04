@@ -23,7 +23,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx1234
+      - image: nginx
         imagePullPolicy: IfNotPresent
         name: nginx
         resources: {}
