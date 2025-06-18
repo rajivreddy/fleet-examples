@@ -36,7 +36,7 @@ backend rke2_apiservers
     server rke2-node3 $MASTER3_IP:6443 ssl verify none
 ```
 
-### Configure User Token
+### Configure Service Account Token
 
 ```bash
 # If your certs are self signed
