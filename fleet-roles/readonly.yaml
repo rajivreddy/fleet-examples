@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fleet-readonly-sa
+  namespace: cattle-fleet-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: fleet-readonly-role
+rules:
+  - apiGroups: ["fleet.cattle.io"]
+    resources:
+      - bundledeployments
+      - bundlenamespacemappings
+      - bundles
+      - clustergroups
+      - clusters
+      - contents
+      - fleetworkspaces
+      - gitreporestrictions
+      - gitrepos
+      - helmapps
+      - imagescans
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: fleet-access-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: fleet-readonly-role
+subjects:
+  - kind: ServiceAccount
+    name: fleet-readonly-sa
+    namespace: cattle-fleet-system
