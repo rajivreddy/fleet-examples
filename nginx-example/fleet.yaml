@@ -1,0 +1,16 @@
+defaultNamespace: nginx
+
+targetCustomizations:
+- name: edgeo1
+  clusterSelector:
+    matchLabels:
+      env: dev
+  kustomize:
+    dir: overlays/dev
+- name: edge02
+  clusterSelector:
+    matchLabels:
+      env: dev
+      release: hotfix
+  kustomize:
+    dir: overlays/test
