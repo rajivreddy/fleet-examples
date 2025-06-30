@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: nginx
   name: nginx
 spec:
+  template:
     spec:
       containers:
-      - image: nginx:1.28
+      - name: nginx
+        image: nginx:1.28

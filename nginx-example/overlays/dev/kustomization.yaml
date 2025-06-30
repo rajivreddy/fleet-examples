@@ -1,4 +1,9 @@
 resources:
-- ../../base
-patchesStrategicMerge:
-- deployment.yaml
+- ../../base/
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: nginx
+    path: deployment.yaml
