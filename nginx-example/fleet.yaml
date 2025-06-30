@@ -5,12 +5,13 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       env: dev
+      version: 1.29
   kustomize:
     dir: overlays/dev
 - name: edge02
   clusterSelector:
     matchLabels:
-      env: dev
-      release: hotfix
+      env: test
+      version: 1.28
   kustomize:
     dir: overlays/test
