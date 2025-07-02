@@ -1,0 +1,37 @@
+apiVersion: 1.2
+image:
+  imageType: iso
+  arch: aarch64
+  baseImage: slemicro.iso
+  outputImageName: eib-image.iso
+operatingSystem:
+  users:
+    - username: root
+      createHomeDir: true
+      encryptedPassword: $6$knrXP.Hy8VkkNoxO$gie8DAlhYmXCzollm/tzK/cBLpOf683miisevvRXoVRJ/F6peZ7ItQwUnZ2vaxi6CMx3vIwo27VSnRbXcblyu/
+      sshKeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDkDVDpGLcInD2m7DusecNviIzLKxpE2539oT8UVOQBRuwAg+uayN7IC/hJlVTr4DnaxHFILYOFAia8WS6QFxV9OGtyZKPah66R7cAPR2Uo6t7K1nY+W8d71+VOMcbVv66okS7gmwJnMWe6i5M08ZMy3VHADSOZeimKq8Z6F5yBrahedirT1MZt9ecwc+cMgBXbyTQ+Imkl8QYawD4NMCBwu62mu+x3yKXo9xZOwBcrtpthKCz0j0pPEHDXTkYXQdnXPNkxQgmqkhwYmViVxfNcBVAC6Kc6O57K52maXJ/35oWk/B7dOlOjIuVSTMwv0fWDBrKrZA5WDQRD0jMDn36xrnu6E3ib6blgdtudLsa7F521UMRL29gaCAV3jDdaAZqH2tCQxxXSt3ArDrJvxvuFRJh/xYZm6kZxzUzHcySKq4QtEiBQ6khrqrOuG+L8Rt4UNEGCi5DMYeBboxLi1BfZQ5HbuzLQ7lQ4oMpn5BhNqctu2zlVMJKxChTy69ahzPk=
+  packages:
+    # # noGPGCheck: true
+    packageList:
+      - jq
+      - helm
+    sccRegistrationCode: INTERNAL-USE-ONLY-xyxy-xyxy
+kubernetes:
+  version: v1.32.3+k3s1
+embeddedArtifactRegistry:
+  images:
+    - name: docker.io/library/nginx:1.14.2
+    - name: docker.io/rancher/klipper-helm:v0.9.4-build20250113
+    - name: docker.io/rancher/klipper-lb:v0.4.13
+    - name: docker.io/rancher/local-path-provisioner:v0.0.31
+    - name: docker.io/rancher/mirrored-coredns-coredns:1.12.0
+    - name: docker.io/rancher/mirrored-library-traefik:3.3.2
+    - name: docker.io/rancher/mirrored-metrics-server:v0.7.2
+    - name: ghcr.io/headlamp-k8s/headlamp:v0.31.1
+    - name: rancher/klipper-helm:v0.9.4-build20250113
+    - name: rancher/klipper-lb:v0.4.13
+    - name: rancher/local-path-provisioner:v0.0.31
+    - name: rancher/mirrored-coredns-coredns:1.12.0
+    - name: rancher/mirrored-library-traefik:3.3.2
+    - name: rancher/mirrored-metrics-server:v0.7.2

@@ -1,0 +1,5 @@
+selinux: true
+disable: traefik
+cluster-cidr: 10.11.0.0/16
+service-cidr: 10.12.0.0/16
+cni: calico
