@@ -20,21 +20,6 @@ copy_token:
     - source: salt://join-fleet/files/token-1
     - mode: 600
 
-### Run Helm Install/Upgrade Command
-install_or_upgrade_fleet_agent:
-  cmd.run:
-    - name: |
-        TOKEN=$(cat /tmp/token)
-        echo $TOKEN
-        helm --kubeconfig /etc/rancher/k3s/k3s.yaml -n cattle-fleet-system \
-        upgrade --install --create-namespace --wait fleet-agent \
-        https://github.com/rancher/fleet/releases/download/v0.12.3/fleet-agent-0.12.3.tgz \
-          --set apiServerURL=https://fleet-4.example.com/ \
-          --set clusterNamespace=fleet-default \
-          --set token=$TOKEN \
-          --set-file apiServerCA=/tmp/ca.pem
-
-
 ## Targeting Second Fleet Server
 {% elif remainder == 1 %}
 {% set fleet_server = "https://fleet-2.example.com/" %}
@@ -49,19 +34,6 @@ copy_token:
     - source: salt://join-fleet/files/token-2
     - mode: 600
 
-### Run Helm Install/Upgrade Command
-install_or_upgrade_fleet_agent:
-  cmd.run:
-    - name: |
-        TOKEN=$(cat /tmp/token)
-        echo $TOKEN
-        helm --kubeconfig /etc/rancher/k3s/k3s.yaml -n cattle-fleet-system \
-        upgrade --install --create-namespace --wait fleet-agent \
-        https://github.com/rancher/fleet/releases/download/v0.12.3/fleet-agent-0.12.3.tgz \
-          --set apiServerURL=https://fleet-4.example.com/ \
-          --set clusterNamespace=fleet-default \
-          --set token=$TOKEN \
-          --set-file apiServerCA=/tmp/ca.pem
 
 ## Targeting Third Fleet Server
 {% elif remainder == 2 %}
@@ -78,20 +50,6 @@ copy_token:
     - mode: 600
 
 
-### Run Helm Install/Upgrade Command
-install_or_upgrade_fleet_agent:
-  cmd.run:
-    - name: |
-        TOKEN=$(cat /tmp/token)
-        echo $TOKEN
-        helm --kubeconfig /etc/rancher/k3s/k3s.yaml -n cattle-fleet-system \
-        upgrade --install --create-namespace --wait fleet-agent \
-        https://github.com/rancher/fleet/releases/download/v0.12.3/fleet-agent-0.12.3.tgz \
-          --set apiServerURL=https://fleet-4.example.com/ \
-          --set clusterNamespace=fleet-default \
-          --set token=$TOKEN \
-          --set-file apiServerCA=/tmp/ca.pem
-
 ## Targeting Fourth Fleet Server
 {% elif remainder == 3 %}
 {% set fleet_server = "https://fleet-4.example.com/" %}
@@ -106,7 +64,10 @@ copy_token:
     - source: salt://join-fleet/files/token-4
     - mode: 600
 
-### Run Helm Install/Upgrade Command
+{% endif %}
+
+
+### Run Helm Install/Upgrade Command 
 install_or_upgrade_fleet_agent:
   cmd.run:
     - name: |
@@ -115,9 +76,7 @@ install_or_upgrade_fleet_agent:
         helm --kubeconfig /etc/rancher/k3s/k3s.yaml -n cattle-fleet-system \
         upgrade --install --create-namespace --wait fleet-agent \
         https://github.com/rancher/fleet/releases/download/v0.12.3/fleet-agent-0.12.3.tgz \
-          --set apiServerURL=https://fleet-4.example.com/ \
+          --set apiServerURL="{{ fleet_server }}" \
           --set clusterNamespace=fleet-default \
           --set token=$TOKEN \
           --set-file apiServerCA=/tmp/ca.pem
-
-{% endif %}
