@@ -66,13 +66,12 @@ copy_token:
 
 {% endif %}
 
-
 ### Run Helm Install/Upgrade Command 
 install_or_upgrade_fleet_agent:
   cmd.run:
     - name: |
         TOKEN=$(cat /tmp/token)
-        echo $TOKEN
+        # echo $TOKEN
         helm --kubeconfig /etc/rancher/k3s/k3s.yaml -n cattle-fleet-system \
         upgrade --install --create-namespace --wait fleet-agent \
         https://github.com/rancher/fleet/releases/download/v0.12.3/fleet-agent-0.12.3.tgz \

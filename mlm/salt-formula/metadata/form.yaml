@@ -1,0 +1,23 @@
+join-fleet:
+  $type: namespace
+  
+  select-fleet-server: 
+    $type: select
+    $name: Fleet Manager Server
+    $values: 
+      - https://34.79.174.6
+      - https://35.233.117.46
+    $required: true
+
+  cluster-namespace:
+    $type: text
+    $name: Cluster Namespace
+    $default: fleet-default
+    $required: true
+
+    
+
+  token:
+    $type: password
+    $name: Fleet Cluster Registration Token
+    $required: true
